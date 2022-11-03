@@ -4,11 +4,19 @@ using BlazorServerSignalRApp.Server.Hubs;
 
 namespace BlazorServerSignalRApp.Server.Hubs
 {
-    public class ChatHub : Hub
+/*    public class Tchat:Hub<ChatHub>
     {
-        public async Task SendMessage(string user, string message)
+        public async Task SendMessage(string userInput, string messageInput)
         {
-            await Clients.All.SendAsync("ReceiveMessage", user, message);
+            await Clients.All.SendAsync("ReceiveMessage", userInput, messageInput);
+        }
+    }
+*/
+    public class ChatHub : Hub
+            {
+        public async Task SendMessage(string username, string message)
+        {
+            await Clients.All.SendAsync("ReceiveMessage", username, message);
         }
     }
 }
