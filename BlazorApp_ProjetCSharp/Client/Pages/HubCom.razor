@@ -10,25 +10,25 @@
 @*<div class="form-group">
         <label>
             Pseudo:
-            <input @bind="userInput" />
+            <input @bind="username" />
         </label>
     </div>
     <div class="form-group">
         <label>
             Message:
-            <input @bind="messageInput" size="50" />
+            <input @bind="message" size="50" />
         </label>
     </div>*@
 
 <div class="input-group mb-3">
-    <input @bind="userInput" type="text" class="form-control rounded-pill" placeholder="Pseudo" aria-label="Username" aria-describedby="basic-addon1">
+    <input @bind="username" type="text" class="form-control rounded-pill" placeholder="Pseudo" aria-label="Username" aria-describedby="basic-addon1">
 </div>
 
 <div class="input-group mb-3">
-    <input @bind="messageInput" type="text" class="form-control rounded-pill" placeholder="Message" aria-label="Username" aria-describedby="basic-addon1">
+    <input @bind="message" type="text" class="form-control rounded-pill" placeholder="Message" aria-label="Username" aria-describedby="basic-addon1">
 </div>
 
-<button @onclick="Send" class="rounded-pill" disabled="@(!IsConnected)">Envoie</button>
+<button @onclick="Send" class="rounded-pill" disabled="@(!IsConnected)">Ok</button>
 
 <hr>
 
@@ -42,8 +42,8 @@
 @code {
     private HubConnection? hubConnection;
     private List<string> messages = new List<string>();
-    private string? userInput;
-    private string? messageInput;
+    private string? username;
+    private string? message;
 
     protected override async Task OnInitializedAsync()
     {
@@ -51,9 +51,9 @@
             .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
             .Build();
 
-        hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
+        hubConnection.On<string, string>("ReceiveMessage", (username, message) =>
         {
-            var encodedMsg = $"{user}: {message}";
+            var encodedMsg = $"{username}: {message}";
             messages.Add(encodedMsg);
             InvokeAsync(StateHasChanged);
         });
@@ -65,7 +65,7 @@
     {
         if (hubConnection is not null)
         {
-            await hubConnection.SendAsync("SendMessage", userInput, messageInput);
+            await hubConnection.SendAsync("SendMessage", username, message);
         }
     }
 
