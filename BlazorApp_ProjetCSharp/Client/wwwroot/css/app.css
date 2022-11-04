@@ -71,3 +71,7 @@ a, .btn-link {
         border-color: black;
         border-width: 3px;
     }
+
+.btn-warning{
+    background-color:red;
+}
