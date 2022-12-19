@@ -27,8 +27,8 @@ else
 {
     // banner to show current user
     <div class="alert alert-secondary mt-4" role="alert">
-        <span class="oi oi-person mr-2" aria-hidden="true"></span>
-        <span class="emoji"><b>@_username</b> est connecté(e)! &#128526;</span>
+@*        <span class="oi oi-person mr-2" aria-hidden="true"></span>
+*@        <span>🐧 <b>@_username</b> est connecté(e)!</span>
         <button class="btn btn-sm btn-warning ml-md-auto" @onclick="@DisconnectAsync">Déconnexion</button>
     </div>
     // display messages
@@ -41,7 +41,7 @@ else
         }
         else
         {
-            <div class="@item.CSS "><b>@item.Username</b> : @item.Body</div>
+            <div class="@item.CSS"><b>@item.Username</b> : @item.Body</div>
         }
     }
     <hr />
@@ -99,18 +99,22 @@ else
             // Create the chat client
             string baseUrl = navigationManager.BaseUri;
 
-            _hubUrl = baseUrl.TrimEnd('/') + "/chathub";
+            _hubUrl = baseUrl.TrimEnd('/') + "/commandhub";
 
             _hubConnection = new HubConnectionBuilder()
                 .WithUrl(_hubUrl)
                 .Build();
 
+            // envoyer une inscription au hub
+            // TODO
+
+            // s'abonner plutôt au ReceiveGenericMessage
             _hubConnection.On<string, string>("ReceiveMessage", BroadcastMessage);
 
             await _hubConnection.StartAsync();
 
 
-            await SendAsync($"[Info] {_username} joined chat room.");
+            await SendAsync($"[Info] {_username} joined chat room 😎.");
         }
         catch (Exception e)
         {
@@ -152,7 +156,7 @@ else
     {
         if (_isChatting)
         {
-            await SendAsync($"[Info] {_username} left chat room.");
+            await SendAsync($"[Info] {_username} left chat room 😵.");
 
             await _hubConnection.StopAsync();
             await _hubConnection.DisposeAsync();
@@ -166,6 +170,7 @@ else
     {
         if (_isChatting && !string.IsNullOrWhiteSpace(message))
         {
+            // utiliser plutôt le SendGenericMessage
             await _hubConnection.SendAsync("SendMessage", _username, message);
             _newMessage = string.Empty;
 

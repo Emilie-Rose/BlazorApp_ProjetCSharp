@@ -3,7 +3,6 @@
 @inject NavigationManager Navigation
 @implements IAsyncDisposable
 
-
 <PageTitle>Hub de communication</PageTitle>
 
 
@@ -48,7 +47,7 @@
     protected override async Task OnInitializedAsync()
     {
         hubConnection = new HubConnectionBuilder()
-            .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
+            .WithUrl(Navigation.ToAbsoluteUri("/commandhub"))
             .Build();
 
         hubConnection.On<string, string>("ReceiveMessage", (username, message) =>

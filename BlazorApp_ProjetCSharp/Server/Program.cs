@@ -11,6 +11,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.AddSignalR();
+/*builder.Services.AddResponseCompression(options =>
+{
+    options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "application/octet-stream" });
+});*/
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddResponseCompression(opts =>
@@ -47,7 +52,11 @@ app.MapControllers();
 app.MapFallbackToFile("index.html");
 
 app.MapBlazorHub();
-app.MapHub<ChatHub>("/chathub");
+app.MapHub<ChatHub>("/chathub"); 
+app.MapHub<CommandHub>("/commandhub");
+//app.MapHub<Tchat>("/tchat");
+//app.MapHub<BlazorApp2.Server.tchat>("/tchat");
+//app.MapHub<BlazorApp2.Server.Tchat>("/discussion");
 
 
 app.Run();
