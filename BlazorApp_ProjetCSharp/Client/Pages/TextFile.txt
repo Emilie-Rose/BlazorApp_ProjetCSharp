@@ -1,0 +1,253 @@
+﻿
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ClassArbres
+
+objet = ClassArbres
+comment ce caracterise un arbre:
+type (pommier, chêne, châtaignier, peuplier, hêtre, sapin, bouleau, saule)
+taille
+couleur
+position
+forme??
+texture???
+nombre de feuille //Commun à tous les arbres
+nombre de branche //Commun à tous les arbres??
+nombre de tronc?? //Commun à tous les arbres
+nombre de fruit
+
+On doit definir les "parametres/propriété/attributs" de chaque type d'arbre
+
+On doit definir les methode de ClassArbres pour dessiner chaque type d'arbre (les getters et setters : niveau d'acces de la methode, type de retour, nom de la methode, parametre d'entrée, parametre de sortie / setters: modification des parametres / getters: affichage des parametres)
+
+creer un objet intance de classe (ClassArbres)
+Arbre type par ex:
+Arbre dessinerSapin = new Arbre(); ou Arbre dessinerSapin = new Arbre("sapin", 10, "vert");?????
+on crée des objets dessinerSapin, dessinerSaule, dessinerPommier, dessinerChene, dessinerChataignier, dessinerPeuplier, dessinerHetre, dessinerBouleau, dessinerSaule DE TYPE "Arbre" (ClassArbres)
+
+on initialise un objet
+dessinerSapin.init("sapin", 10, "vert")
+ou
+Arbre dessinerSapin = new Arbre("sapin", 10, "vert");
+ou
+Arbre dessinerSapin = new Arbre();
+dessinerSapin.settersType("sapin");
+dessinerSapin.settersTaille(10);
+dessinerSapin.settersCouleur("vert");
+
+
+on manipule un objet arbre
+ex : if (dessinerSapin.taille == dessinerBouleau.taille) 
+erreur car taille est un attribut privé de la classe Arbre
+else { dessinerSapin.dessiner()}
+
+encapsulation des données (aatibuts privés? / getters et setters) et comportement (methode) : attribut et methode sont def dans meme environnement (dans la meme classe: capsule)
+on peut ne pas avoir acces directement aux attributs d'un objet (encapsulation des données)
+heritage on peut def une classe a ppartir d'une autre classe
+polymorphisme on peut def plusieurs classes qui ont des attributs et des methodes communs
+
+public = accessible partout
+private = accessible uniquement dans la classe
+protected = accessible dans la classe et dans les classes filles
+default = accessible dans le meme package
+
+objet: instance de classe
+classe: ensemble de methode et d'attribut
+methode: ensemble d'instruction
+attribut: variable
+
+objet = ClassArbres
+comment ce caracterise un arbre:
+ - type (pommier, chêne, châtaignier, peuplier, hêtre, sapin, bouleau, saule)
+ - taille
+ - couleur
+ - position
+ - forme
+ - texture
+ - nombre de feuille //Commun à tous les arbres
+ - nombre de branche //Commun à tous les arbres??
+
+On doit definir les "parametres/propriété/attributs" de chaque type d'arbre
+Redefinition objet
+ On doit definir les methode de ClassArbres pour dessiner chaque type d'arbre (les getters et setters : niveau d'acces de la methode, type de retour, nom de la methode, parametre d'entrée, parametre de sortie / setters: modification des parametres / getters: affichage des parametres)
+
+ creer un objet intance de classe (ClassArbres)
+Arbre type par ex:
+Arbre dessinerSapin = new Arbre(); ou Arbre dessinerSapin = new Arbre("sapin", 10, "vert");?????
+ ATTENTION NE PAR REDEFINIR LES ATTRIBUTS DE LA CLASSE DANS LE CONSTRUCTEUR (attribut publique qui sont hérités de la classe mère)
+
+
+
+ polymorphisme: possibilité pour la methode / fonction d'etre appelé dans diiférents contexte selon la situation
+ ex 
+ public class Meres {
+     public void methode() {
+         console.readLine("Methode de la classe Meres");
+ }}
+ Mere > Fille > FilleFille ...
+
+
+ public class Fille extends Meres {
+    public void methode() {
+         console.readLine("Methode de la classe Fille");
+ }}
+
+ public class FilleFille extends Fille {
+     public void methode() {
+        console.readLine("Methode de la classe FilleFille");
+ }}
+
+
+ classe abstraites: classe qui ne peut pas etre instanciée
+ classe abstraite: classe qui contient au moins une methode abstraite
+ methode abstraite: methode qui n'a pas de corps
+ classe abstraite: classe "normal"
+ ex 
+ public abstract class Meres {
+     public abstract void methode();
+ }
+ parceque si :
+ public class Meres {
+     public static void methode() {
+         console.readLine("Methode de la classe Meres");
+     } erreur car methode abstraite!!!!!!!
+
+ classe abstraite
+ arbre:
+ - type
+ - taille
+ - couleur
+- position
+ - forme
+ - texture
+- nombre de feuille
+ - nombre de branche-->
+
+ > dessinerChene
+> dessinerChataignier ....
+
+abstract class dessinerArbre {
+    public abstract void dessinerChene();
+    public abstract void dessinerChataignier();
+    public abstract void dessinerPeuplier();
+    public abstract void dessinerHetre();
+    public abstract void dessinerSapin();
+    public abstract void dessinerBouleau();
+    public abstract void dessinerSaule();
+}
+ 
+
+ Attention!!! Arbre pas instencier car classe abstraite
+on instencie les classes filles (chene/sapin/pommier ...)
+ les objets auront tous couleurs, tronc, branche, feuilles donc les classes peuvent les modifier (valeurs: vert, 5metre, nb de branche ...)
+  tout les arbre ont tronc est feuille/branche (methode taille() et couleur())
+ tout les arbre n'ont pas de fruits donc ont sera def dans la classe fille (pommier) (redefini)
+
+ arbre (abstrait)
+  - taille
+    corp (tronc)
+  - couleur
+
+           - position
+    - forme
+      - texture
+     - nombre de feuille
+     - nombre de branche
+
+
+
+
+
+
+
+
+
+    public static void main(String[] args) {-->
+     List<String> list = new ArrayList<String>();
+        list.add("A");
+        list.add("B");
+        list.add("C");
+
+
+        List<String> list = Arrays.asList("A", "B", "C");
+
+        for (String s : list) {
+            System.out.println(s);
+        }
+   
+
+    List<String> Arbres = new List<String>();
+    Arbres.add("Pommier");
+    Arbres.add("Chêne");
+    Arbres.add("Châtaignier");
+    Arbres.add("Peuplier");
+    Arbres.add("Hêtre");
+    Arbres.add("Sapin");
+    Arbres.add("Bouleau");
+    Arbres.add("Saule");
+
+    afficher la liste des arbres;
+     dessiner un arbre;
+     dessiner un sapin (random sur taille et couleur) pour tester et voir si ça marche;
+    pareil pour les autre type d'arbre
+    }
+
+ parametre commun à tous les arbres
+
+    static void dessinerArbre(String type, int taille, String couleur) {
+        dessiner un arbre
+       this.type = type;
+        this.taille = taille;
+        this.couleur = couleur;
+
+    }
+
+ Type d'arbre
+
+    static void dessinerSapin(int taille, String couleur) {
+        // dessiner un sapin
+    }
+
+    static void dessinerPommier(int taille, String couleur) {
+        // dessiner un pommier
+    }
+
+    static void dessinerChene(int taille, String couleur) {
+        // dessiner un chêne
+    }
+
+    static void dessinerChataignier(int taille, String couleur) {
+        // dessiner un châtaignier
+    }
+
+
+    static void dessinerPeuplier(int taille, String couleur) {
+        // dessiner un peuplier
+    }
+    
+    static void dessinerHetre(int taille, String couleur) {
+        // dessiner un hêtre
+    }
+
+    static void dessinerBouleau(int taille, String couleur) {
+        // dessiner un bouleau
+    }
+
+    static void dessinerSaule(int taille, String couleur) {
+        // dessiner un saule
+    }
+
+
+}

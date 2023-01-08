@@ -1,0 +1,104 @@
+﻿@page "/EchoHub"
+@inject NavigationManager navigationManager
+@using Microsoft.AspNetCore.SignalR.Client
+
+<PageTitle>EchoHub</PageTitle>
+
+<div class="container text-center">
+    <img src="https://img.icons8.com/ios-filled/50/null/spy-male.png" alt="image description" align="middle">
+    @*    <h1>Fil d'écoute!</h1>
+    *@
+    <h1>Groupe d'application</h1>
+
+</div>
+
+
+@*d'inscrire a un groupe a la connexion
+afficher gp d'appartenance'
+
+*@
+
+
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr class="table-success">
+                <th scope="col">#</th>
+                <th scope="col">Groupes1 - Appli Console</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>user1_gp1</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>user2_gp1</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr class="table-success">
+                <th scope="col">#</th>
+                <th scope="col">Groupes2 - Appli2</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>user1_gp2</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>user2_gp2</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr class="table-success">
+                <th scope="col">#</th>
+                <th scope="col">Groupes3 - Appli3</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>user1_gp3</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Appli user2_gp3</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+@**@
+@code{
+    public class InitGp
+    {
+        public int groupID { get; set; }
+        public string groupNom { get; set; }
+        public int? ObjetGroupe { get; set; }
+    }
+
+    public List<InitGp> DonneeGroupe = new List<InitGp>();
+
+    protected override void OnInitialized()
+    {
+        DonneeGroupe.Add(new InitGp() { groupID = 1, groupNom = "Appli console", ObjetGroupe = null });
+        DonneeGroupe.Add(new InitGp() { groupID = 2, groupNom = "Appli 2", ObjetGroupe = null });
+        DonneeGroupe.Add(new InitGp() { groupID = 3, groupNom = "Appli 3", ObjetGroupe = null, });
+    }
+}
